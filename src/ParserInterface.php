@@ -9,5 +9,9 @@ namespace DMT\Entity\Generator;
  */
 interface ParserInterface
 {
+    /**
+     * @param Binding $binding
+     * @return OutputInterface
+     */
     public function parse(Binding $binding): OutputInterface;
 }

@@ -1,0 +1,9 @@
+{% macro serialized_name(binding) %}
+    {{- binding.entry|default(binding.name) -}}
+{% endmacro %}
+
+{% macro property_type(binding) %}
+    {%- import 'class_functions.twig' as class -%}
+    {%- set type -%}{{- class.property_type(binding)|trim("\\", 'left') -}}{%- endset -%}
+    {%- if binding.multiple -%}array<{{ type }}>{%- else -%}{{ type }}{%- endif -%}
+{% endmacro %}

@@ -1,0 +1,23 @@
+{%- from 'jms_functions.twig' import serialized_name, property_type -%}
+{{ binding.type }}:
+{{- binding.entry ? "\r\n  xml_root: " ~ binding.entry }}
+{{- binding.namespace ? "\r\n  xml_namespace: " ~ binding.namespace }}
+  properties:
+{%- for property in binding.properties -%}{{- "\r\n    " -}}
+    {{ property.name }}:
+      serialized_name: {{ serialized_name(property) }}
+      type: {{ property_type(property) }}
+      {%- if property.element -%}{%- if property.multiple -%}{{ "\r" }}
+      xml_list:
+        inline: true
+        entry_name: {{ serialized_name(property) }}
+        {{- property.namespace ? "\r\n        namespace: " ~ property.namespace }}
+      {%- elseif property.element == 'element' -%}{{ "\r" }}
+      xml_element:
+        cdata: false
+        {{- property.namespace ? "\r\n        namespace: " ~ property.namespace }}
+      {%- else -%}{{ "\r" }}
+      xml_{{ property.element }}: true
+      {%- endif -%}
+      {%- endif -%}
+{%- endfor -%}

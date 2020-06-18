@@ -51,6 +51,12 @@ class Binding
     public $required = false;
 
     /**
+     * The type of element in XML.
+     * @var string $element [element|attribute|value]
+     */
+    public $element;
+
+    /**
      * Config option for XML prefix.
      * @var string $prefix
      */

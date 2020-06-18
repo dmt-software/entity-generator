@@ -6,13 +6,13 @@
     {{- binding.type|split("\\")|slice(0, -1)|join("\\") -}}
 {% endmacro %}
 
-{% macro property_type(binding, parent) %}
+{% macro property_type(binding, parent = []) %}
     {%- if "\\" in binding.type -%}
         {%- set namespace = _self.class_namespace(parent) ~ "\\" -%}
         {%- if binding.type starts with namespace -%}
             {{- binding.type|slice(namespace|length) -}}
         {%- else -%}
-            {{- "\\" ~ binding.type -}}
+            {{- "\\" ~ binding.type|trim("\\", 'left') -}}
         {%- endif -%}
     {%- else -%}
         {{- binding.type -}}

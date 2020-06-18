@@ -21,5 +21,8 @@ class {{ class_name(binding) }}
      * @var {{ property_type(property, binding) }}{{ property.multiple ? '[]' }} ${{ property.name }}
      */
     public ${{ property.name }};
+{% if not loop.last %}
+
+{% endif %}
 {% endfor %}
 }
