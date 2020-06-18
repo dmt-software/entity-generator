@@ -1,0 +1,25 @@
+{%- from 'class_functions.twig' import class_namespace, class_name, property_type, description -%}
+<?php
+
+namespace {{ class_namespace(binding) }};
+
+/**
+ * Class {{ class_name(binding) }}
+{% if binding.description %}
+ *
+ * {{ binding.description }}
+{% endif %}
+ */
+class {{ class_name(binding) }}
+{
+{% for property in binding.properties %}
+    /**
+{% if property.description %}
+     * {{ property.description }}
+     *
+{% endif %}
+     * @var {{ property_type(property, binding) }}{{ property.multiple ? '[]' }} ${{ property.name }}
+     */
+    public ${{ property.name }};
+{% endfor %}
+}

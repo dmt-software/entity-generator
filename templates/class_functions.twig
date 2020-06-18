@@ -1,0 +1,20 @@
+{% macro class_name(binding) %}
+    {{- binding.type|split("\\")|last -}}
+{% endmacro %}
+
+{% macro class_namespace(binding) %}
+    {{- binding.type|split("\\")|slice(0, -1)|join("\\") -}}
+{% endmacro %}
+
+{% macro property_type(binding, parent) %}
+    {%- if "\\" in binding.type -%}
+        {%- set namespace = _self.class_namespace(parent) ~ "\\" -%}
+        {%- if binding.type starts with namespace -%}
+            {{- binding.type|slice(namespace|length) -}}
+        {%- else -%}
+            {{- "\\" ~ binding.type -}}
+        {%- endif -%}
+    {%- else -%}
+        {{- binding.type -}}
+    {%- endif -%}
+{% endmacro %}
