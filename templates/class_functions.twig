@@ -15,6 +15,6 @@
             {{- "\\" ~ binding.type|trim("\\", 'left') -}}
         {%- endif -%}
     {%- else -%}
-        {{- binding.type -}}
+        {{- binding.type starts with 'DateTime' ? "\\DateTime" : binding.type -}}
     {%- endif -%}
 {% endmacro %}

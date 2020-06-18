@@ -19,7 +19,7 @@ class ClassOutputTest extends TestCase
         $binding->properties[0]->type = 'Foo\\Bar\\Elem\\Id';
         $binding->properties[0]->description = 'The id for this element';
         $binding->properties[1]->name = 'created';
-        $binding->properties[1]->type = '\\DateTime';
+        $binding->properties[1]->type = "DateTime<'Y-m-d'>";
         $binding->properties[2]->name = 'comments';
         $binding->properties[2]->type = 'string';
         $binding->properties[2]->multiple = true;
