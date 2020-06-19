@@ -1,7 +1,7 @@
 {%- from 'jms_functions.twig' import serialized_name, property_type -%}
 {{ binding.type }}:
-{{- binding.entry ? "\r\n  xml_root: " ~ binding.entry }}
-{{- binding.namespace ? "\r\n  xml_namespace: " ~ binding.namespace }}
+{{- binding.entry and binding.element ? "\r\n  xml_root: " ~ binding.entry }}
+{{- binding.namespace and binding.element ? "\r\n  xml_namespace: " ~ binding.namespace }}
   properties:
 {%- for property in binding.properties -%}{{- "\r\n    " -}}
     {{ property.name }}:
