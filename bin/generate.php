@@ -6,7 +6,11 @@ use DMT\Entity\Generator\Generator;
 use DMT\Entity\Generator\Parser\ClassParser;
 use DMT\Entity\Generator\Parser\ConfigParser;
 
-include __DIR__ . '/../vendor/autoload.php';
+$dir = dirname(__DIR__, 1);
+if ($pos = strpos($dir, 'vendor')) {
+    $dir = rtrim(substr($dir, 0, $pos), DIRECTORY_SEPARATOR);
+}
+include $dir . '/vendor/autoload.php';
 
 $options  = getopt('f:p:', ['', 'file::', 'path::', 'dryRun', 'help']);
 $filename = $options['file'] ?? $options['f'] ?? null;
