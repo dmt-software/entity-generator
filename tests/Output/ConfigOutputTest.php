@@ -27,7 +27,7 @@ class ConfigOutputTest extends TestCase
         $binding->properties[1]->element = 'element';
         $binding->properties[1]->namespace = 'urn.something.else';
         $binding->properties[2]->name = 'created';
-        $binding->properties[2]->type = '\\DateTime';
+        $binding->properties[2]->type = "DateTime<'Y-m-d'>";
         $binding->properties[2]->entry = 'TS';
 
         $output = new ConfigOutput($binding);
@@ -41,5 +41,6 @@ class ConfigOutputTest extends TestCase
         $this->assertStringContainsString('        namespace: urn.something.else', (string) $output);
         $this->assertStringContainsString('    created:', (string) $output);
         $this->assertStringContainsString('      serialized_name: TS', (string) $output);
+        $this->assertStringContainsString('      type: DateTime<\'Y-m-d\'>', (string) $output);
     }
 }

@@ -5,5 +5,6 @@
 {% macro property_type(binding) %}
     {%- import 'class_functions.twig' as class -%}
     {%- set type -%}{{- class.property_type(binding)|trim("\\", 'left') -}}{%- endset -%}
-    {%- if binding.multiple -%}array<{{ type }}>{%- else -%}{{ type }}{%- endif -%}
+    {%- if type == 'DateTime' -%}{%- set type -%}{{- binding.type|trim("\\", 'left')|raw -}}{%- endset -%}{%- endif -%}
+    {%- if binding.multiple -%}array<{{ type|raw }}>{%- else -%}{{ type|raw }}{%- endif -%}
 {% endmacro %}
