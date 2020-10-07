@@ -7,7 +7,7 @@ namespace {{ class_namespace(binding) }};
  * Class {{ class_name(binding) }}
 {% if binding.description %}
  *
- * {{ binding.description }}
+ * {{ binding.description|raw }}
 {% endif %}
  */
 class {{ class_name(binding) }}
@@ -15,7 +15,7 @@ class {{ class_name(binding) }}
 {% for property in binding.properties %}
     /**
 {% if property.description %}
-     * {{ property.description }}
+     * {{ property.description|raw }}
      *
 {% endif %}
      * @var {{ property_type(property, binding) }}{{ property.multiple ? '[]' }} ${{ property.name }}
