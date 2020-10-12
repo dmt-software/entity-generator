@@ -25,4 +25,16 @@ class {{ class_name(binding) }}
 
 {% endif %}
 {% endfor %}
+{% for property in binding.properties %}
+{% if property.element == 'value' %}
+
+    /**
+     * @param {{ property_type(property, binding) }} ${{ property.name }}
+     */
+    public function __construct({{ property_type(property, binding) }} ${{ property.name }})
+    {
+        $this->{{ property.name }} = ${{ property.name }};
+    }
+    {% endif %}
+{% endfor %}
 }
