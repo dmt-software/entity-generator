@@ -16,7 +16,8 @@
       xml_element:
         cdata: false
         {{- property.namespace ? "\r\n        namespace: " ~ property.namespace }}
-      {%- else -%}{{ "\r" }}
+      {%- endif -%}
+      {%- if property.element != 'element' -%}{{ "\r" }}
       xml_{{ property.element }}: true
       {%- endif -%}
       {%- endif -%}
