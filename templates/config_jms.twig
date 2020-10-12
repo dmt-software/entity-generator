@@ -12,7 +12,7 @@
         inline: true
         entry_name: {{ serialized_name(property) }}
         {{- property.namespace ? "\r\n        namespace: " ~ property.namespace }}
-      {%- elseif property.element == 'element' -%}{{ "\r" }}
+      {%- elseif property.element != 'attribute' -%}{{ "\r" }}
       xml_element:
         cdata: false
         {{- property.namespace ? "\r\n        namespace: " ~ property.namespace }}
